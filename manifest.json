@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "e-GP Document Helper",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Download e-GP tender PDFs by replacing Tender ID in base URL",
   
   "permissions": [
