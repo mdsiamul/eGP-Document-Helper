@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "e-GP Document Helper",
+  "version": "1.1.0",
+  "description": "Download e-GP tender PDFs by replacing Tender ID in base URL",
+  
+  "permissions": [
+    "downloads",
+    "storage",
+    "activeTab",
+    "scripting",
+    "clipboardWrite"
+  ],
+  
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "toolbar-icon.png",
+      "48": "toolbar-icon.png",
+      "128": "toolbar-icon.png"
+    }
+  },
+  
+  "icons": {
+    "16": "toolbar-icon.png",
+    "48": "toolbar-icon.png",
+    "128": "toolbar-icon.png"
+  },
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ]
+}

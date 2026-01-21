@@ -1,0 +1,16 @@
+<!-- This is a placeholder SVG icon. Replace with actual PNG icons for production. -->
+<!-- To create proper icons, use any image editor to create 16x16, 48x48, and 128x128 PNG files -->
+
+PLACEHOLDER: Create the following PNG icon files:
+- icon16.png (16x16 pixels)
+- icon48.png (48x48 pixels)  
+- icon128.png (128x128 pixels)
+
+You can use any free icon creation tool or website like:
+- https://favicon.io/
+- Photoshop, GIMP, or Paint.NET
+- Online icon generators
+
+Suggested icon: A document/PDF symbol with download arrow
+
+For now, the extension will work without icons (Chrome will use a default icon).
