@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCR Test Page - Sample Tender Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    
+    .document {
+      background: white;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    
+    h1 {
+      color: #09595B;
+      border-bottom: 3px solid #09595B;
+      padding-bottom: 10px;
+    }
+    
+    .tender-info {
+      margin: 30px 0;
+      padding: 20px;
+      background: #f9f9f9;
+      border-left: 4px solid #09595B;
+    }
+    
+    .tender-id {
+      font-size: 24px;
+      font-weight: bold;
+      color: #dc2626;
+      margin: 10px 0;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    
+    th {
+      background: #09595B;
+      color: white;
+    }
+    
+    .instructions {
+      background: #fef3c7;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
+      border: 2px solid #f59e0b;
+    }
+    
+    .instructions h3 {
+      color: #d97706;
+      margin-top: 0;
+    }
+    
+    .instructions ol {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    
+    .instructions li {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="instructions">
+    <h3>📋 How to Test OCR Feature</h3>
+    <ol>
+      <li><strong>Click the extension icon</strong> in Chrome toolbar</li>
+      <li>Click: <strong>"📷 Scan Tender IDs from Document (OCR)"</strong></li>
+      <li>Wait 10-30 seconds for OCR processing</li>
+      <li><strong>Expected result</strong>: IDs below should be extracted automatically</li>
+      <li>Check the popup input field for: <code>1211960, 1205553, 1214558, 1198745, 1187632</code></li>
+    </ol>
+  </div>
+
+  <div class="document">
+    <h1>Government of Bangladesh</h1>
+    <h2>e-Government Procurement (e-GP) System</h2>
+    <h3>Tender Notice - Open Tender Method</h3>
+    
+    <div class="tender-info">
+      <p><strong>Tender Reference:</strong> GOB/WORKS/2025/001</p>
+      <p><strong>Tender ID:</strong> <span class="tender-id">1211960</span></p>
+      <p><strong>Publication Date:</strong> January 15, 2026</p>
+      <p><strong>Closing Date:</strong> February 15, 2026</p>
+    </div>
+    
+    <h4>Related Tender Proposals:</h4>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Serial No.</th>
+          <th>Tender Proposal ID</th>
+          <th>Project Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="tender-id">1205553</td>
+          <td>Construction of Bridge - Phase 1</td>
+          <td>Active</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="tender-id">1214558</td>
+          <td>Road Development Project</td>
+          <td>Active</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="tender-id">1198745</td>
+          <td>Water Supply System</td>
+          <td>Pending</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="tender-id">1187632</td>
+          <td>Electrical Infrastructure</td>
+          <td>Active</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Submission Guidelines:</h4>
+    <p>All proposals must be submitted through the e-GP portal using the respective Tender Proposal IDs listed above.</p>
+    
+    <p><strong>Contact:</strong> procurement@example.gov.bd</p>
+    <p><strong>For queries, reference Tender ID:</strong> <span class="tender-id">1211960</span></p>
+  </div>
+  
+  <div class="instructions" style="margin-top: 30px;">
+    <h3>🧪 Testing Different Scenarios</h3>
+    <ol>
+      <li><strong>Full Page Test:</strong> Test OCR on entire visible page (should extract all 5 IDs)</li>
+      <li><strong>Screenshot Test:</strong> Take a screenshot of this page, open it, then test OCR</li>
+      <li><strong>PDF Test:</strong> Print this page to PDF, open the PDF, then test OCR</li>
+      <li><strong>Zoom Test:</strong> Zoom in/out and test if OCR still works</li>
+      <li><strong>Scroll Test:</strong> Scroll to show only part of the table, test partial extraction</li>
+    </ol>
+  </div>
+</body>
+</html>

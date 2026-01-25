@@ -114,68 +114,59 @@
       transform: none;
     }
     
-    .btn-open {
-      background: linear-gradient(135deg, #09595B 0%, #0a7173 100%);
-      color: white;
-      box-shadow: 0 4px 12px rgba(9, 89, 91, 0.3);
-      margin-top: 8px;
-    }
-    
-    .btn-open:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(9, 89, 91, 0.4);
-    }
-    
-    .btn-open:active:not(:disabled) {
-      transform: translateY(0);
-    }
-    
-    .btn-open:disabled {
-      background: #cccccc;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-    }
-    
-    .btn-select {
+    .btn-scan {
       background: linear-gradient(135deg, #0ea5a4 0%, #0284c7 100%);
       color: white;
       box-shadow: 0 4px 12px rgba(14, 165, 164, 0.35);
-      margin-top: 8px;
+      margin-top: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       font-weight: 600;
       letter-spacing: 0.3px;
+      font-size: 16px;
+      padding: 16px 24px;
     }
     
-    .btn-select:hover:not(:disabled) {
+    .btn-scan:hover:not(:disabled) {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(14, 165, 164, 0.5);
       background: linear-gradient(135deg, #10b8b7 0%, #0396e0 100%);
     }
     
-    .btn-select:active:not(:disabled) {
+    .btn-scan:active:not(:disabled) {
       transform: translateY(0);
       box-shadow: 0 3px 10px rgba(14, 165, 164, 0.4);
     }
     
-    .btn-select:disabled {
-      background: #cccccc;
+    .btn-scan:disabled {
+      background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
       cursor: not-allowed;
       box-shadow: none;
       transform: none;
     }
     
-    .btn-select .icon {
-      font-size: 16px;
+    .btn-scan .icon {
+      font-size: 18px;
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, #09595B 0%, #0a7173 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(9, 89, 91, 0.3);
+      margin-top: 8px;
+    }
+    
+    .btn-secondary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(9, 89, 91, 0.4);
     }
     
     .divider {
       display: flex;
       align-items: center;
-      margin: 16px 0;
+      margin: 20px 0;
       color: #999;
       font-size: 12px;
     }
@@ -199,7 +190,7 @@
     .hint {
       font-size: 12px;
       color: #666;
-      margin-top: 6px;
+      margin-top: 8px;
       display: flex;
       align-items: center;
       gap: 4px;
@@ -251,6 +242,13 @@
       display: block;
     }
     
+    .status.warning {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+      color: #856404;
+      border-left: 4px solid #ffc107;
+      display: block;
+    }
+    
     #progressSection {
       margin-top: 16px;
       padding: 16px;
@@ -299,6 +297,25 @@
       margin-top: 4px;
       font-weight: 400;
     }
+    
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    
+    .mode-badge.dom {
+      background: #d4edda;
+      color: #155724;
+    }
+    
+    .mode-badge.ocr {
+      background: #fff3cd;
+      color: #856404;
+    }
   </style>
 </head>
 <body>
@@ -308,35 +325,28 @@
   </div>
   
   <div class="container">
-    <!-- Screen Selection Section -->
+    <!-- Unified Scan Section -->
     <div class="section">
-      <button id="selectAreaBtn" class="btn-select">
+      <button id="scanBtn" class="btn-scan">
         <span class="icon">🎯</span>
-        <span>Select Area to Extract Tender IDs</span>
+        <span id="scanBtnText">Scan Tender IDs</span>
       </button>
-      <div class="hint" style="margin-top: 6px;">Click to draw a selection box on the current page</div>
+      <div class="hint">Draw a box on page → Auto-extracts IDs (DOM first, OCR fallback)</div>
     </div>
     
     <div class="divider">OR ENTER MANUALLY</div>
     
-    <!-- Download Section -->
+    <!-- Manual Entry Section -->
     <div class="section">
-      <label for="tenderId">Enter Tender ID(s):</label>
+      <label for="tenderId">Tender ID(s):</label>
       <textarea 
         id="tenderId" 
         rows="3"
         placeholder="e.g., 601568, 601569, 601570&#10;Or one per line"
-        autofocus
       ></textarea>
       <div class="hint">Separate multiple IDs with commas or new lines</div>
       <button id="downloadBtn" class="btn-primary">Download PDF(s)</button>
-      <button id="openTenderBtn" class="btn-open">Open Tender(s)</button>
-    </div>
-    
-    <!-- Progress Section -->
-    <div id="progressSection" style="display: none;">
-      <div>Progress:</div>
-      <div id="progressText"></div>
+      <button id="openTenderBtn" class="btn-secondary">Open Tender(s)</button>
     </div>
     
     <!-- Status Message Area -->
@@ -346,7 +356,7 @@
   <!-- Footer -->
   <div class="footer">
     <div class="developer">Developed by <span class="name">MD SIAMUL ISLAM</span></div>
-    <div class="version">v1.2.0</div>
+    <div class="version">v2.0.1</div>
   </div>
   
   <script src="popup.js"></script>

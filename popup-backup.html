@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e-GP Document Helper</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 420px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #09595B 0%, #0a7173 100%);
+      color: #333;
+    }
+    
+    .header-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px 24px 16px 24px;
+    }
+    
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      border-radius: 8px;
+    }
+    
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: white;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+    
+    .container {
+      background: white;
+      border-radius: 12px 12px 0 0;
+      padding: 24px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .section {
+      margin-bottom: 0;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #09595B;
+      font-size: 14px;
+    }
+    
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      resize: vertical;
+      transition: all 0.3s ease;
+      background: #f8f9fa;
+    }
+    
+    input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: #09595B;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(9, 89, 91, 0.1);
+    }
+    
+    button {
+      padding: 14px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 16px;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #09595B 0%, #0a7173 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(9, 89, 91, 0.3);
+    }
+    
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(9, 89, 91, 0.4);
+    }
+    
+    .btn-primary:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    
+    .btn-primary:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    
+    .btn-open {
+      background: linear-gradient(135deg, #09595B 0%, #0a7173 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(9, 89, 91, 0.3);
+      margin-top: 8px;
+    }
+    
+    .btn-open:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(9, 89, 91, 0.4);
+    }
+    
+    .btn-open:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    
+    .btn-open:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    
+    .btn-select {
+      background: linear-gradient(135deg, #0ea5a4 0%, #0284c7 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(14, 165, 164, 0.35);
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    
+    .btn-select:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(14, 165, 164, 0.5);
+      background: linear-gradient(135deg, #10b8b7 0%, #0396e0 100%);
+    }
+    
+    .btn-select:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 3px 10px rgba(14, 165, 164, 0.4);
+    }
+    
+    .btn-select:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    
+    .btn-select .icon {
+      font-size: 16px;
+    }
+    
+    .btn-ocr {
+      background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+    }
+    
+    .btn-ocr:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+      background: linear-gradient(135deg, #fbbf24 0%, #ef4444 100%);
+    }
+    
+    .btn-ocr:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 3px 10px rgba(245, 158, 11, 0.4);
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 16px 0;
+      color: #999;
+      font-size: 12px;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e0e0e0;
+    }
+    
+    .divider::before {
+      margin-right: 12px;
+    }
+    
+    .divider::after {
+      margin-left: 12px;
+    }
+    
+    .hint {
+      font-size: 12px;
+      color: #666;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .hint::before {
+      content: "ℹ️";
+      font-size: 13px;
+    }
+    
+    .status {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .status.success {
+      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+      color: #155724;
+      border-left: 4px solid #28a745;
+      display: block;
+    }
+    
+    .status.error {
+      background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+      color: #721c24;
+      border-left: 4px solid #dc3545;
+      display: block;
+    }
+    
+    .status.info {
+      background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+      color: #0c5460;
+      border-left: 4px solid #17a2b8;
+      display: block;
+    }
+    
+    #progressSection {
+      margin-top: 16px;
+      padding: 16px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 8px;
+      border: 2px solid #09595B;
+    }
+    
+    #progressSection > div:first-child {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #09595B;
+      font-size: 14px;
+    }
+    
+    #progressText {
+      font-size: 13px;
+      color: #495057;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 16px 24px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 12px;
+      margin-top: 0;
+    }
+    
+    .footer .developer {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.95);
+    }
+    
+    .footer .name {
+      color: #ffffff;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    .footer .version {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 4px;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-wrapper">
+    <img src="icon.png" alt="Logo" class="logo">
+    <h1>e-GP Document Helper</h1>
+  </div>
+  
+  <div class="container">
+    <!-- Screen Selection Section -->
+    <div class="section">
+      <button id="selectAreaBtn" class="btn-select">
+        <span class="icon">🎯</span>
+        <span>Select Area to Extract Tender IDs</span>
+      </button>
+      <div class="hint" style="margin-top: 6px;">Click to draw a selection box on the current page</div>
+      
+      <button id="ocrScanBtn" class="btn-select" style="margin-top: 12px; background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%); box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);">
+        <span class="icon">📷</span>
+        <span>Scan Tender IDs from Document (OCR)</span>
+      </button>
+      <div class="hint" style="margin-top: 6px;">For scanned PDFs and image-based documents</div>
+    </div>
+    
+    <div class="divider">OR ENTER MANUALLY</div>
+    
+    <!-- Download Section -->
+    <div class="section">
+      <label for="tenderId">Enter Tender ID(s):</label>
+      <textarea 
+        id="tenderId" 
+        rows="3"
+        placeholder="e.g., 601568, 601569, 601570&#10;Or one per line"
+        autofocus
+      ></textarea>
+      <div class="hint">Separate multiple IDs with commas or new lines</div>
+      <button id="downloadBtn" class="btn-primary">Download PDF(s)</button>
+      <button id="openTenderBtn" class="btn-open">Open Tender(s)</button>
+    </div>
+    
+    <!-- Progress Section -->
+    <div id="progressSection" style="display: none;">
+      <div>Progress:</div>
+      <div id="progressText"></div>
+    </div>
+    
+    <!-- Status Message Area -->
+    <div id="status" class="status"></div>
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer">
+    <div class="developer">Developed by <span class="name">MD SIAMUL ISLAM</span></div>
+    <div class="version">v1.3.0</div>
+  </div>
+  
+  <!-- Load Tesseract.js locally -->
+  <script src="tesseract.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

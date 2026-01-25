@@ -1,15 +1,21 @@
 {
   "manifest_version": 3,
   "name": "e-GP Document Helper",
-  "version": "1.2.0",
-  "description": "Download e-GP tender PDFs by replacing Tender ID in base URL",
+  "version": "2.0.1",
+  "description": "Extract Tender IDs from HTML pages and scanned documents using DOM + OCR scanning",
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; worker-src 'self';"
+  },
   
   "permissions": [
     "downloads",
     "storage",
     "activeTab",
     "scripting",
-    "clipboardWrite"
+    "clipboardWrite",
+    "tabs",
+    "offscreen"
   ],
   
   "host_permissions": [
@@ -35,6 +41,18 @@
   "background": {
     "service_worker": "background.js"
   },
+  
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "tesseract/tesseract.min.js",
+        "tesseract/worker.min.js",
+        "tesseract/tesseract-core.wasm.js",
+        "tesseract/lang-data/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
   
   "content_scripts": [
     {
